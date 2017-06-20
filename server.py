@@ -14,9 +14,10 @@ def hello_world():
 
 @app.route('/<view>')
 def show(view):
-  tmpl_file = os.path.join(tmpl_dir, '%s.html' % view)
+  tmpl_name = '%s.html' % view
+  tmpl_file = os.path.join(tmpl_dir, tmpl_name)
   if os.path.isfile(tmpl_file):
-    return render_template(tmpl_file)
+    return render_template(tmpl_name)
   else:
     return render_template('error.html', reason="Invalid page %s" % view), 404
 

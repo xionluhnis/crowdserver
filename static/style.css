@@ -2,6 +2,9 @@ html {
   height: 100%;
   background: url(/static/person.png) #e1f5ff no-repeat center center;
 }
+html.error {
+  background: url(/static/personb.png) #ffe1e1 no-repeat center center;
+}
 #content {
   margin: 0;
   padding: 25px;

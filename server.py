@@ -10,15 +10,12 @@ tmpl_dir = os.path.join(appdir, 'templates')
 upload_scheme_dir = os.path.join(appdir, 'upload')
 
 @app.route('/')
-def hello_world():
-  return 'Hello from Flask!'
-
 @app.route('/<view>')
-def show(view):
+def show(view = 'index'):
   tmpl_name = '%s.html' % view
   tmpl_file = os.path.join(tmpl_dir, tmpl_name)
   if os.path.isfile(tmpl_file):
-    return render_template(tmpl_name)
+    return render_template(tmpl_name, template=view)
   else:
     return render_template('error.html', reason="Invalid page %s" % view), 404
 
@@ -100,10 +97,6 @@ def upload(name, id=None):
       return os.path.basename(upload_file)
   else:
     return render_template("error.html", reason="Invalid upload scheme %s" % name), 404
-
-@app.route('/<str>/edit')
-def edit(str):
-  return render_template("edit.html", str=str)
 
 if __name__ == '__main__':
   app.run()
